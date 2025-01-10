@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="robots" content="noindex">
+        <link rel="shortcut icon" type="image" href="/assets/brightericon.jpg" />
+        <link rel="stylesheet" href="styles.css">
+        <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet'>
+        <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+       
+        <script src="scripts/content.js"></script>
+        <script src="scripts/list-injection.js"></script>
+        <script src="scripts/distance-calculator.js"></script>
+        <script src="scripts/list-script.js"></script>
+        <script src="scripts/grade-calculator.js"></script>
+
+        <style>
+            body, #user-address, button {
+                font-family: 'Glacial Indifference';
+            }
+            h1, h2, .button{
+                font-family: 'Alice';
+            }
+            .navbar {
+                font-family: 'Glacial Indifference';
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar-background">
+            <img src="assets/logo.png" width="200px">
+            <div class="navbar">
+                <a href="/list.html">Home</a>
+                <a href="/about.html">About</a>
+                <a href="/resources.html">Resources</a>
+            </div>
+            <div class="address-input">
+                <input type="text" id="user-address" placeholder="Enter your address">
+                <button onclick="findDistances()">Find Hospitals</button>
+            </div>
+        </div>
+
+         <div class="flex-container">
+            <div class="side-column">
+                <div class="grid-container-list">
+                    <img src="assets/medicalplus.png">
+                    <h2>Severity</h2>
+                </div>
+                <label class="container">
+                    Minor: Requires First Aid
+                    <input type="checkbox" name="severity" id="minor" onclick="selectCheckbox('severity', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Moderate: May Require Hospitalization
+                    <input type="checkbox" name="severity" id="moderate" onclick="selectCheckbox('severity', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Major: Immediate or Long Term Hospitalization
+                    <input type="checkbox" name="severity" id="major" onclick="selectCheckbox('severity', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Extreme: Risk of Death
+                    <input type="checkbox" name="severity" id="extreme" onclick="selectCheckbox('severity', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="grid-container-list">
+                    <img src="assets/locationblack.png" width="100px">
+                    <h2> Location </h2>
+                </div> 
+                <label class="container">
+                    Within 10 miles
+                    <input type="checkbox" name="location" id="10miles" onclick="selectCheckbox('location', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Within 15 miles
+                    <input type="checkbox" name="location" id="15miles" onclick="selectCheckbox('location', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Within 20 miles
+                    <input type="checkbox" name="location" id="20miles" onclick="selectCheckbox('location', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    20+ miles
+                    <input type="checkbox" name="location" id="20+miles" onclick="selectCheckbox('location', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="grid-container-list">
+                    <img src="assets/childwithheart.png">
+                    <h2> Child Age </h2>
+                </div>
+                <label class="container">
+                    0-2 years old
+                    <input type="checkbox" name="age" id="0-2" onclick="selectCheckbox('age', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    3-7 years old
+                    <input type="checkbox" name="age" id="3-7" onclick="selectCheckbox('age', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    8-11 years old
+                    <input type="checkbox" name="age" id="8-11" onclick="selectCheckbox('age', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    12+ years old
+                    <input type="checkbox" name="age" id="12+" onclick="selectCheckbox('age', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <div class="grid-container-list">
+                    <img src="assets/diseasetype.png">
+                    <h2> Disease Type </h2>
+                </div>
+                <label class="container">
+                    Respiratory 
+                    <input type="checkbox" name="disease" id="Respiratory" onclick="selectCheckbox('disease', this)" >
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Skeletal 
+                    <input type="checkbox" name="disease" id="Skeletal" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Neurological 
+                    <input type="checkbox" name="disease" id="Neurological" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Gastrointestinal 
+                    <input type="checkbox" name="disease" id="Gastrointestinal" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Infectious Disease 
+                    <input type="checkbox" name="disease" id="Infectious Diseases" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Chronic
+                    <input type="checkbox" name="disease" id="Chronic Conditions" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">
+                    Cardiac
+                    <input type="checkbox" name="disease" id="Cardiac" onclick="selectCheckbox('disease', this)">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <!-- Fake list -->
+            <div class="main-content" id="hospital-list">
+                <div class="hospital-row">
+                    <a class="button" href="/hospital.html?name=Jackson%20Memorial%20Hospital">Jackson Memorial Hospital</a>
+                    <p> <b> Description </b></p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ea tempore molestias magnam rem, repellendus placeat, minus, quo 
+                        veniam perspiciatis reiciendis debitis officia unde? Doloremque sed 
+                        inventore iste, distinctio eligendi quasi?</p>
+                </div>
+                <div class="hospital-row">
+                    <a class="button" href="/hospital.html?name=Made%20Up%20Hospital">Made Up Hospital</a>
+                    <p> <b> Description </b></p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ea tempore molestias magnam rem, repellendus placeat, minus, quo 
+                        veniam perspiciatis reiciendis debitis officia unde? Doloremque sed 
+                        inventore iste, distinctio eligendi quasi?</p>
+                </div>
+                <div class="hospital-row">
+                    <a class="button" href="/hospital.html">Jackson Memorial Hospital</a>
+                    <p> <b> Description </b></p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ea tempore molestias magnam rem, repellendus placeat, minus, quo 
+                        veniam perspiciatis reiciendis debitis officia unde? Doloremque sed 
+                        inventore iste, distinctio eligendi quasi? Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ea tempore molestias magnam rem, repellendus placeat, mi...</p>
+                </div>
+                <div class="hospital-row">
+                    <a class="button" href="/hospital.html">Jackson Memorial Hospital</a>
+                    <p> <b> Description </b></p>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Ea tempore molestias magnam rem, repellendus placeat, minus, quo 
+                        veniam perspiciatis reiciendis debitis officia unde? Doloremque sed 
+                        inventore iste, distinctio eligendi quasi?</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

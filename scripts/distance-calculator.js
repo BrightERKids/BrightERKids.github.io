@@ -1,26 +1,34 @@
-async function findDistances() {
-  const address = document.getElementById("user-address").value;
+async function findDistances(address = null) {
+  if (!address) {
+    address = document.getElementById("user-address").value;
+  }
   if (address) {
     try {
       const userLocation = await geocodeAddress(address);
-      const distances = [];
+      const distancePromises = [];
 
       for (const [hospitalName, hospital] of Object.entries(hospitalData)) {
-        try {
-          const hospitalLocation = await geocodeAddress(hospital.Address);
-          const distance = calculateDistance(
-            userLocation.lat,
-            userLocation.lon,
-            hospitalLocation.lat,
-            hospitalLocation.lon
-          );
-          console.log(distance);
-          distances.push({ hospitalName, distance });
-        } catch (error) {
-          console.error(`Error geocoding address for ${hospitalName}:`, error);
-        }
+        const distancePromise = geocodeAddress(hospital.Address)
+          .then((hospitalLocation) => {
+            const distance = calculateDistance(
+              userLocation.lat,
+              userLocation.lon,
+              hospitalLocation.lat,
+              hospitalLocation.lon
+            );
+            return { hospitalName, distance };
+          })
+          .catch((error) => {
+            console.error(
+              `Error geocoding address for ${hospitalName}:`,
+              error
+            );
+            return null;
+          });
+        distancePromises.push(distancePromise);
       }
 
+      const distances = (await Promise.all(distancePromises)).filter(Boolean); // Filter out null values
       localStorage.setItem("distances", JSON.stringify(distances)); // Store distances in localStorage
       return distances;
     } catch (error) {
@@ -38,7 +46,10 @@ async function geocodeAddress(address) {
     const response = await fetch(url);
     const data = await response.json();
     if (data.length > 0) {
-      console.log(`Geocoded location for ${address}:`, data[0]);
+      console.log(
+        `[${new Date().toISOString()}] Geocoded location for ${address}:`,
+        data[0]
+      );
       return {
         lat: parseFloat(data[0].lat),
         lon: parseFloat(data[0].lon),

@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  const distances = localStorage.getItem("distances");
+  if (!distances) {
+    findDistances("1919 E Thomas Rd, Phoenix, AZ");
+  }
   injectHospitalList("hospital-list");
 });
 

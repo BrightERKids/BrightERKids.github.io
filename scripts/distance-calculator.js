@@ -27,7 +27,7 @@ async function findDistances() {
       console.error("Error finding distances:", error);
     }
   }
-  window.location.href = "/list.html";
+  window.location.href = "/index.html";
 }
 
 async function geocodeAddress(address) {

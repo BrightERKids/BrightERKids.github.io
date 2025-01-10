@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image" href="/assets/brightericon.jpg" />
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Glacial Indifference';
+        }
+        #user-address, button {
+                font-family: 'Glacial Indifference';
+            }
+        h1, h2, .button {
+            font-family: 'Alice';
+        }
+        .alert {
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar {
+            font-family: 'Glacial Indifference';
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar-background">
+        <img src="assets/logo.png" width="200px">
+        <div class="navbar">
+            <a href="/index.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/resources.html">Resources</a>
+        </div>
+        <div class="address-input">
+            <input type="text" id="user-address" placeholder="Enter your address">
+            <button onclick="findDistances()">Find Hospitals</button>
+        </div>
+    </div>
+    <div class="center hospital-body" style="padding:20px" >
+        <h1 class="alert">Emergency Alert</h1>
+        <p>If you are experiencing a medical emergency, please call 911 immediately.</p>
+        <p>Do not wait. Contact emergency services right away.</p>
+        <p>Stay calm and provide the necessary information to the operator.</p>
+    </div>
+</body>
+</html>
